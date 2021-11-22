@@ -20,14 +20,14 @@ client.on('ready', () => {
 client.on('interactionCreate', async interaction => {
   if (!interaction.isCommand()) return;
 
-  const { commandName } = interaction;
+	const command = client.commands.get(interaction.commandName);
+	if (!command) return;
 
-  if (commandName === 'ping') {
-		await interaction.reply(`Hi <@${interaction.user.id}>!!! Pong !!!! :DDD <33333333`);
-	} else if (commandName === 'server') {
-		await interaction.reply(`Server name: ${interaction.guild.name} \n Total members: ${interaction.guild.memberCount}`);
-	} else if (commandName === 'user') {
-		await interaction.reply(`User info: ${interaction.user.username}`);
+	try {
+		await command.execute(interaction);
+	} catch (error) {
+		console.error(error);
+		await interaction.reply({ content: 'Something went wrong while executing this command :(', ephemeral: true });
 	}
 });
 
