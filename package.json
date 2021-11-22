@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Blissblass/discord_toyhouse_scraper#readme",
   "dependencies": {
+    "@discordjs/builders": "^0.8.2",
     "discord.js": "^13.3.1"
   }
 }
