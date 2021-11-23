@@ -10,10 +10,10 @@ module.exports = {
 	async execute(interaction) {
     const link = interaction.options.getString('link');
     if(!link || !link.startsWith('https://toyhou.se/')) {
-      link = link.replace(/\s/g, "");
       await interaction.reply({content: `<@${interaction.user.id}>, please give me a Toyhouse link!`, ephemeral: true});
       return
     }
+    link = link.replace(/\s/g, "");
 
     const fetchSite = async () => {
       const browser = await puppeteer.launch();
