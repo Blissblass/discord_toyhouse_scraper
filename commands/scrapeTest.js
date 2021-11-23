@@ -8,7 +8,7 @@ module.exports = {
     .addStringOption(option => option.setName('link').setDescription('Enter a Toyhouse link for scraping.')),
 
 	async execute(interaction) {
-    const link = interaction.options.getString('link');
+    let link = interaction.options.getString('link');
     if(!link || !link.startsWith('https://toyhou.se/')) {
       await interaction.reply({content: `<@${interaction.user.id}>, please give me a Toyhouse link!`, ephemeral: true});
       return
