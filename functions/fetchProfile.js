@@ -4,7 +4,6 @@ module.exports.fetchProfile = async (link, interaction) => {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.goto(link);
-  await interaction.deferReply();
 
   let nameEle = await page.$("h1.display-4", { visible: true });
   
@@ -21,12 +20,12 @@ module.exports.fetchProfile = async (link, interaction) => {
 
   console.log(`Title name: ${name != null} || Image: ${imageSrc != null}`);
 
-  await interaction.editReply(`<@${interaction.user.id}>, fetched profile for ${name}`);
   await browser.close();
   
   const data = {
     profName: name,
-    imgSrc: imageSrc,
+    imgSrc: `${imageSrc}.jpg`,
+    scraperSrc: "https://i.imgur.com/g9pEDMC.png"
   }
 
   return data
