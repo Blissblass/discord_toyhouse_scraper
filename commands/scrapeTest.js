@@ -26,6 +26,10 @@ module.exports = {
       
       if(nameEle) {
         const name = await nameEle.evaluate(el => el.textContent);
+        const profImage = await page.$("img.profile-name-icon");
+        const imageSrc = await profImage.evaluate(el => el.getAttribute("src"))
+
+        console.log(`Title name: ${name != null} || Image: ${imageSrc != null}`);
 
         await interaction.reply(`<@${interaction.user.id}>, fetched profile for ${name}`);
         await browser.close();
@@ -39,7 +43,10 @@ module.exports = {
         
         const nameEle = await page.$("h1.display-4");
         const name = await nameEle.evaluate(el => el.textContent);
+        const profImage = await page.$("img.profile-name-icon");
+        const imageSrc = await profImage.evaluate(el => el.getAttribute("src"))
 
+        console.log(`Title name: ${name != null} || Image: ${imageSrc != null}`);
         await interaction.editReply(`<@!${interaction.user.id}>, fetched profile for ${name}`);
         await browser.close();
         return
