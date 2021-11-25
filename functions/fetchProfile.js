@@ -24,7 +24,7 @@ module.exports.fetchProfile = async (link, interaction) => {
   
   const data = {
     profName: name,
-    imgSrc: `${imageSrc}.jpg`,
+    imgSrc: imageSrc,
     scraperSrc: "https://i.imgur.com/g9pEDMC.png"
   }
 

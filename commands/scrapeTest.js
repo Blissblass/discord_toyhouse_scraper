@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageEmbed } = require('discord.js');
+const { MessageEmbed, MessageAttachment } = require('discord.js');
 const { fetchProfile } = require("../functions/fetchProfile");
 
 module.exports = {
@@ -19,13 +19,14 @@ module.exports = {
 
     link = link.replace(/\s/g, "");
     const embedData = await fetchProfile(link, interaction);
-
+    
+    const file = new MessageAttachment(embedData.imgSrc);
     const embed = new MessageEmbed()
       .setColor("#1b1b1c")
       .setTitle(embedData.profName)
       .setURL(link)
       .setAuthor('Toyhouse Scraper', embedData.scraperSrc)
-      .setThumbnail("https://f2.toyhou.se/file/f2-toyhou-se/characters/13293559?1635436327")
+      .setThumbnail(`attachment://${embedData.imgSrc}`)
       .setFooter(`Built by kyumi#0480`)
 
     await interaction.editReply({ embeds: [embed] });
